@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Layout from "./components/Layout/Layout";

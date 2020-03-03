@@ -1,5 +1,4 @@
 import * as actionTypes from "../actions/actionTypes";
-import { fetchOrdersFail } from "../actions/order";
 
 const initialState = {
   token: null,
