@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Route, withRouter } from "react-router-dom";
+import React, { Component, Fragment } from "react";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Layout from "./components/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
@@ -18,16 +18,23 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <Route path="/checkout" component={Checkout} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/auth" component={Auth} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/" exact component={BurgerBuilder} />
+              <Route path="/auth" component={Auth} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/orders" component={Orders} />
+              <Route path="/logout" component={Logout} />
+              <Route path="/" exact component={BurgerBuilder} />
+              <Redirect to="/" />
         </Layout>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.isAuth !== null
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -35,4 +42,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
